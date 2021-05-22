@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\news;
+use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\Echo_;
 
-class Control_Authors extends Controller
+class control_news extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,20 +19,15 @@ class Control_Authors extends Controller
         return view('admin.news', compact('berita'));
     }
 
-    public function load_image($name_file)
-    {
-        $gambar = array(
-            'gambar' => $name_file
-        );
-        return view('image', $gambar);
-        //echo 'hei';
-    }
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function create()
+    {
+        //
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -41,7 +37,8 @@ class Control_Authors extends Controller
      */
     public function store(Request $request)
     {
-        //
+        news::create($request->all());
+        return redirect('news');
     }
 
     /**
@@ -63,6 +60,7 @@ class Control_Authors extends Controller
      */
     public function edit($id)
     {
+        //
     }
 
     /**

@@ -32,13 +32,13 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="admin">
+                <a class="nav-link" href="{{route('admin.index')}}">
                     <i class="fas fa-fw fa-baby"></i>
                     <span>Authors</span></a>
             </li>
 
              <li class="nav-item">
-                <a class="nav-link" href="news">
+                <a class="nav-link" href="{{route('news.index')}}">
                      <i class="fas fa-fw fa-tshirt"></i>
                     <span>News</span></a>
             </li>

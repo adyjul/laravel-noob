@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\authors;
+use Illuminate\Support\Facades\Auth;
+use PharIo\Manifest\Author;
 
 class Control_Authors extends Controller
 {
@@ -41,7 +43,15 @@ class Control_Authors extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $file = $request->file('file');
+        // Authors::create([
+        //     'name' => $request -> name,
+        //     'picture' => $file,
+        // ]);
+
+        Authors::create($request->all());
+        return redirect('admin');
+        //return redirect()->view('admin');
     }
 
     /**
@@ -63,6 +73,9 @@ class Control_Authors extends Controller
      */
     public function edit($id)
     {
+        $author = authors::findOrFail($id);
+        echo $author;
+        return view('admin.edit', compact('author'));
     }
 
     /**
@@ -74,7 +87,12 @@ class Control_Authors extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Authors::findOrFail($id)->update([
+            'name' => $request->name,
+            'picture' => $request->picture,
+            'address' => $request->address,
+        ]);
+        return redirect('admin');
     }
 
     /**
@@ -85,6 +103,7 @@ class Control_Authors extends Controller
      */
     public function destroy($id)
     {
-        //
+        Authors::findOrFail($id)->delete();
+        return redirect('admin');
     }
 }

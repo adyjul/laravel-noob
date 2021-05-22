@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\control_authors;
+use App\Http\Controllers\control_news;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,26 +19,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('home');
-});
-
 Route::get('/todo', function () {
     return view('todo-list');
 });
 
-// Route::get('/admin', function () {
-//     return view('admin.admin');
-// });
 
 //Author
 Route::get('/admin', [control_authors::class, 'index']);
+Route::resource('admin', control_authors::class);
 Route::get('/gambar/{image}', [control_authors::class, 'load_image']);
-
+Route::get('/hapus/{id}', [control_authors::class, 'destroy']);
+Route::get('/edit/{id}', [control_authors::class, 'edit']);
+Route::get('/update/{id}', [control_authors::class, 'update']);
 
 //News
+//Route::get('/news', 'App\Http\Controllers\control_news@index');
 Route::get('/news', [control_news::class, 'index']);
-Route::get('/gambar/{image}', [control_authors::class, 'load_image']);
+Route::resource('news', control_news::class);
+//Route::get('/gambar/{image}', [control_authors::class, 'load_image']);
 
 // Route::get('/home', function () {
 //     return view('home');

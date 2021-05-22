@@ -6,10 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<body>
-
-    
-     <img src="{{asset('img/authors/'.$gambar)}}">
-    
+<body>    
+    <img src="{{asset('img/authors/'.$gambar)}}">
 </body>
 </html>
