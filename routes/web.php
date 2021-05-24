@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\control_authors;
+use App\Http\Controllers\Control_Home;
 use App\Http\Controllers\control_news;
 use Illuminate\Support\Facades\Route;
 
@@ -41,3 +42,5 @@ Route::resource('news', control_news::class);
 // Route::get('/home', function () {
 //     return view('home');
 // });
+
+Route::get('/home', [Control_Home::class, 'index']);
