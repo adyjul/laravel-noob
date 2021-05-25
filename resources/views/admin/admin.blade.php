@@ -28,7 +28,7 @@
    <th>{{$count}}</th>
    
    <th>{{$a->name}}</th>     
-   <th><a href={{"gambar/".$a->picture}}> lihat gambar</a></th>
+   <th><a href={{"gambar/".$a->picture}}>lihat gambar</a></th>
    <th>{{$a->address}}</th>
    <th>hh</th>
    <th>10 menit</th>   
@@ -70,7 +70,7 @@
              <div class="form-group">
               <label>Picture</label>
               {{-- <input type="file" name="picture" class="form-control"> --}}
-              <input type="text" name="picture" class="form-control">
+              <input type="file" name="picture" class="form-control">
              </div>
              <div class="form-group">
                  <label>Address</label>

@@ -37,7 +37,13 @@ class control_news extends Controller
      */
     public function store(Request $request)
     {
-        news::create($request->all());
+        $file = $request->file('picture');
+        news::create([
+            'title' => $request->title,
+            'picture' => $file->getClientOriginalName(),
+            'content' => $request->content,
+            'is_published' => $request->is_published
+        ]);
         return redirect('news');
     }
 
@@ -52,6 +58,15 @@ class control_news extends Controller
         //
     }
 
+    public function load_image($name_file)
+    {
+        $gambar = array(
+            'gambar' => $name_file
+        );
+        return view('image_news', $gambar);
+        //echo 'hei';
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -60,7 +75,8 @@ class control_news extends Controller
      */
     public function edit($id)
     {
-        //
+        $berita = news::findOrFail($id);
+        return view('admin.edit_news', compact('berita'));
     }
 
     /**
@@ -72,7 +88,16 @@ class control_news extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $file = $request->file('picture');
+
+        news::findOrFail($id)->update([
+            'title' => $request->title,
+            'picture' => $file->getClientOriginalName(),
+            'content' => $request->content,
+            'is_published' => $request->is_published
+        ]);
+
+        return redirect('news');
     }
 
     /**
@@ -83,6 +108,7 @@ class control_news extends Controller
      */
     public function destroy($id)
     {
-        //
+        news::findOrFail($id)->delete();
+        return redirect('news');
     }
 }

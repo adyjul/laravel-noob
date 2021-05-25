@@ -20,10 +20,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//home
 Route::get('/todo', function () {
     return view('todo-list');
 });
-
+Route::get('/home', [Control_Home::class, 'index']);
 
 //Author
 Route::get('/admin', [control_authors::class, 'index']);
@@ -37,10 +38,9 @@ Route::get('/update/{id}', [control_authors::class, 'update']);
 //Route::get('/news', 'App\Http\Controllers\control_news@index');
 Route::get('/news', [control_news::class, 'index']);
 Route::resource('news', control_news::class);
-//Route::get('/gambar/{image}', [control_authors::class, 'load_image']);
+Route::get('/gambar/news/{image}', [control_news::class, 'load_image']);
+Route::get('/hapus/news/{id}', [control_news::class, 'destroy']);
 
 // Route::get('/home', function () {
 //     return view('home');
 // });
-
-Route::get('/home', [Control_Home::class, 'index']);

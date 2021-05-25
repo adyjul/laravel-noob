@@ -29,7 +29,7 @@
     <th>1</th>
    
     <th>{{$n->title}}</th>     
-    <th><a href="#"> lihat gambar</a></th>
+    <th><a href={{"gambar/news/".$n->picture}}> lihat gambar</a></th>
     <th>{{$n->content}}</th>
     <th>
         <?php if ($n->is_published==0) { ?> 
@@ -39,9 +39,11 @@
         <?php }?>
     </th>        
     <th></th>   
-    <th><div class="btn btn-danger btn-sm"><i class="fa fa-trash "></i></div></th>
+    <th><a href="{{"hapus/news/".$n->id}}">
+      <div class="btn btn-danger btn-sm"><i class="fa fa-trash "></i></div>
+    </a></th>
     <th>
-     <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i>edit</a>     
+     <a href="{{"edit/news/".$n->id}} class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>     
     <th>
        
     </th>
@@ -72,7 +74,7 @@
      <div class="modal-body">
          <form method="post" action="{{route('news.store')}}" enctype="multipart/form-data">
             @CSRF       
-            <?php $publish=0 ?>     
+            <?php $publish=1 ?>     
             <div class="form-group">                 
                 <input type="hidden" name="is_published" class="form-control"  value="<?= $publish ?>">
             </div>
@@ -83,7 +85,7 @@
              </div>
              <div class="form-group">
                  <label>picture</label>
-                 <input type="text" name="picture" class="form-control">
+                 <input type="file" name="picture" class="form-control">
              </div>
             
              <div class="form-group">

@@ -43,13 +43,14 @@ class Control_Authors extends Controller
      */
     public function store(Request $request)
     {
-        // $file = $request->file('file');
-        // Authors::create([
-        //     'name' => $request -> name,
-        //     'picture' => $file,
-        // ]);
+        $file = $request->file('picture');
+        Authors::create([
+            'name' => $request->name,
+            'picture' => $file->getClientOriginalName(),
+            'address' => $request->address
+        ]);
 
-        Authors::create($request->all());
+        // Authors::create($request->all());
         return redirect('admin');
         //return redirect()->view('admin');
     }
@@ -74,7 +75,6 @@ class Control_Authors extends Controller
     public function edit($id)
     {
         $author = authors::findOrFail($id);
-        echo $author;
         return view('admin.edit', compact('author'));
     }
 
